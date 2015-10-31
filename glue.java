@@ -4,16 +4,18 @@ public class glue
 {
 	public static void main(String[] args)
 	{
-		String topic = "Zuckerberg";
+		String topic = "Spectre";
 		ArrayList<String> tweets = TweetManager.getTweets(topic);
-		NLP.init();
+		NLP n = new NLP();
 
 		int count = 0;
 		System.out.println("\n\n************************************************************Tweets************************************************************\n\n");
 		for(String tweet : tweets)
 		{
 			count++;
-			System.out.println("Tweet no."+count+"\n"+tweet);
+			System.out.print("Tweet no."+count+"\n"+tweet +" : ");
+			System.out.println( n.findSentiment(tweet) );
+//			n.findSentiment(tweet);
 		}
 	}
 }

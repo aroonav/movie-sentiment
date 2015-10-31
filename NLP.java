@@ -9,32 +9,40 @@ import edu.stanford.nlp.util.CoreMap;
 
 public class NLP
 {
-	static StanfordCoreNLP pipeline;
+	Properties props;
+	StanfordCoreNLP pipeline;
 
-	public static void init()
+	public NLP()
 	{
-		Properties props = new Properties();
+		props = new Properties();
 		props.setProperty("annotators", "tokenize, ssplit, pos, lemma, parse, sentiment");
-		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+		pipeline = new StanfordCoreNLP(props);
 	}
 
-	public static int findSentiment(String tweet)
+	public int findSentiment(String tweet)
 	{
 		int mainSentiment = 0;
 		if (tweet != null && tweet.length() > 0)
 		{
 			int longest = 0;
-			Annotation annotation = pipeline.process(tweet);
-			for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class))
+			try
 			{
-				Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
-				int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
-				String partText = sentence.toString();
-				if (partText.length() > longest)
+				Annotation annotation = pipeline.process(tweet);
+				for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class))
 				{
-					mainSentiment = sentiment;
-					longest = partText.length();
+					Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
+					int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
+					String partText = sentence.toString();
+					if (partText.length() > longest)
+					{
+						mainSentiment = sentiment;
+						longest = partText.length();
+					}
 				}
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception caught !!!!");
 			}
 		}
 		return mainSentiment;
