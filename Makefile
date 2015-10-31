@@ -1,6 +1,6 @@
 all:
-	javac -cp /home/roguedragon/programs/sentiment/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2.jar StanfordCoreNlpExample.java
-	java -cp /home/roguedragon/programs/sentiment/stanford-corenlp-full-2015-04-20/*:./ StanfordCoreNlpExample
+#	javac -cp ./lib/ejml-0.23.jar:./lib/stanford-corenlp-3.5.2.jar:./lib/stanford-corenlp-3.5.2-models.jar:./lib/twitter4j-core-4.0.4.jar:./lib/xom.jar NLP.java glue.java TweetManager.java
+	javac -cp ./lib/stanford-corenlp-3.5.2.jar:./lib/stanford-corenlp-3.5.2-models.jar:./lib/twitter4j-core-4.0.4.jar NLP.java glue.java TweetManager.java
+	java -cp ./:./lib/* glue
 clean:
 	rm *.class
-	rm *.xml
