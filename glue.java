@@ -9,13 +9,14 @@ public class glue
 		NLP n = new NLP();
 
 		int count = 0;
-		System.out.println("\n\n************************************************************Tweets************************************************************\n\n");
+		System.out.println("\n\n*********************************************************************************************************************************************");
+		System.out.println("									Tweets");
+		System.out.println("*********************************************************************************************************************************************\n\n");
+		System.out.println("0:Very Negative 1:Negative 2:Neutral 3:Positive 4:Very Positive\n");
 		for(String tweet : tweets)
 		{
 			count++;
-			System.out.print("Tweet no."+count+"\n"+tweet +" : ");
-			System.out.println( n.findSentiment(tweet) );
-//			n.findSentiment(tweet);
+			System.out.println("Tweet no."+count+"\n"+tweet +" : " + n.findSentiment(tweet));
 		}
 	}
 }

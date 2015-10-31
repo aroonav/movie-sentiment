@@ -15,10 +15,13 @@ public class TweetManager {
 		Twitter twitter = new TwitterFactory().getInstance();
 		ArrayList<String> tweetList = new ArrayList<String>();
 		int count = 1;
-		int MAX_TWEETS = 300;
+		int MAX_TWEETS = 10;
 		try
 		{
-			Query query = new Query("lang:en AND "+topic);
+			Query query = new Query(topic + " -filter:retweets -filter:links -filter:replies -filter:images -filter:videos");
+			query.setLocale("en");
+			query.setLang("en");;
+
 			QueryResult result;
 			do												//Only show the tweets of a single page from the query i.e 15 tweets.
 			{
