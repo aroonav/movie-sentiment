@@ -4,7 +4,7 @@ public class glue
 {
 	public static void main(String[] args)
 	{
-		String topic = "Spectre";
+		String topic = "The witch hunter";
 		ArrayList<String> tweets = TweetManager.getTweets(topic);
 		NLP n = new NLP();
 

@@ -14,20 +14,24 @@ public class TweetManager {
 	{
 		Twitter twitter = new TwitterFactory().getInstance();
 		ArrayList<String> tweetList = new ArrayList<String>();
+		int count = 1;
+		int MAX_TWEETS = 300;
 		try
 		{
-			Query query = new Query(topic);
+			Query query = new Query("lang:en AND "+topic);
 			QueryResult result;
-//			do												//Only show the tweets of a single page from the query i.e 15 tweets.
-//			{
+			do												//Only show the tweets of a single page from the query i.e 15 tweets.
+			{
 				result = twitter.search(query);
 				List<Status> tweets = result.getTweets();
 				for (Status tweet : tweets)
 				{
 					tweetList.add(tweet.getText());
+					count++;
+					if(count>MAX_TWEETS)	break;
 				}
-//			}
-//			while ((query = result.nextQuery()) != null);
+			}
+			while (((query = result.nextQuery()) != null) && ( count<MAX_TWEETS ));
 		}
 		catch (TwitterException te)
 		{

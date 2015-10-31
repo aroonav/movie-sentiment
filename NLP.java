@@ -42,7 +42,7 @@ public class NLP
 			}
 			catch(Exception e)
 			{
-				System.out.println("Exception caught !!!!");
+				System.out.println(" :(  Exception caught  :) ");
 			}
 		}
 		return mainSentiment;
