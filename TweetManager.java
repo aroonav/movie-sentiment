@@ -18,16 +18,16 @@ public class TweetManager {
 		{
 			Query query = new Query(topic);
 			QueryResult result;
-			do
-			{
+//			do												//Only show the tweets of a single page from the query i.e 15 tweets.
+//			{
 				result = twitter.search(query);
 				List<Status> tweets = result.getTweets();
 				for (Status tweet : tweets)
 				{
 					tweetList.add(tweet.getText());
 				}
-			}
-			while ((query = result.nextQuery()) != null);
+//			}
+//			while ((query = result.nextQuery()) != null);
 		}
 		catch (TwitterException te)
 		{

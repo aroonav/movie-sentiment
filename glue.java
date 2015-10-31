@@ -7,11 +7,13 @@ public class glue
 		String topic = "Zuckerberg";
 		ArrayList<String> tweets = TweetManager.getTweets(topic);
 		NLP.init();
-		System.out.println("SIZEEEEEEEEEEEEEEEEeeeeeeeeeeee: "+tweets.size());
 
+		int count = 0;
+		System.out.println("\n\n************************************************************Tweets************************************************************\n\n");
 		for(String tweet : tweets)
 		{
-			System.out.println(tweet + " : " + NLP.findSentiment(tweet));
+			count++;
+			System.out.println("Tweet no."+count+"\n"+tweet);
 		}
 	}
 }
